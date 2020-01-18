@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+        <title>Autopaikan vuokrasopimus</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+    
+<body>
+
+    <br>
+    <div class="container text-center">
+        <div class="col-sm-12">
+            <h2>Uusi vuokrasopimus</h2>
+        </div>
+    </div>
+    <hr><br>
+
+<div class="container">
+    <form>
+        <div class="row">
+            <div class="col-6"><!--left side -->
+                <div class="form-group row">
+                    <label for="taloyhtio" class="col-sm-6 col-form-label">Valitse taloyhtiö:</label>
+                    <div class="col-sm-6">
+                        <select name="taloyhtio" class="custom-select">
+                            <option value=""></option>  
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="omistaja" class="col-sm-6 col-form-label">Omistaja:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="omistaja">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="apnro" class="col-sm-6 col-form-label">Autopaikan numero:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="apnro">
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label for="kosoite" class="col-sm-6 col-form-label">Katuosoite:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="kosoite">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="postinro" class="col-sm-6 col-form-label">Postinumero:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="postinro">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ptoimipaikka" class="col-sm-6 col-form-label">Postitoimipaikka:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="ptoimipaikka">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="sopalkaa" class="col-sm-6 col-form-label">Vuokrasopimus alkaa:</label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <select name="Kuukausi" class="custom-select">
+                                    <option value="tammikuu">Tammikuu</option>
+                                    <option value="helmikuu">Helmikuu</option>
+                                    <option value="maaliskuu">Maaliskuu</option>
+                                    <option value="huhtikuu">Huhtikuu</option>
+                                    <option value="toukokuu">Toukokuu</option>
+                                    <option value="kesakuu">Kesäkuu</option>
+                                    <option value="heinakuu">Heinäkuu</option>
+                                    <option value="elokuu">Elokuu</option>
+                                    <option value="syyskuu">Syyskuu</option>
+                                    <option value="lokakuu">Lokakuu</option>
+                                    <option value="marraskuu">Marraskuu</option>
+                                    <option value="joulukuu">Joulukuu</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <select name="Vuosi" class="custom-select">
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option> 
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tilinro" class="col-sm-6 col-form-label">Tilinumero:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="tilinro">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tyontekija" class="col-sm-6 col-form-label">Valitse työntekijä:</label>
+                    <div class="col-sm-6">
+                        <select name="Tyontekija" class="custom-select">
+                            <option value=""></option>  
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="vuokra" class="col-sm-6 col-form-label">Vuokra:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="vuokra">
+                    </div>
+                </div>                
+            </div>
+            <!--right side -->
+            <div class="col-6">
+                <div class="form-group row">
+                    <label for="enimi" class="col-sm-6 col-form-label">Etunimi:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="enimi">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="snimi" class="col-sm-6 col-form-label">Sukunimi:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="snimi">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="kosoite" class="col-sm-6 col-form-label">Katuosoite:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="kosoite">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="postinro" class="col-sm-6 col-form-label">Postinumero:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="postinro" value="">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="ptoimipaikka" class="col-sm-6 col-form-label">Postitoimipaikka:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="ptoimipaikka" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-6 col-form-label">Sähköposti:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="email" value="email@example.com">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="" class="col-sm-6 col-form-label">Henkilötunnus/Y-tunnus:</label>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="hlotunnus" id="gridRadios1" value="Henkilötunnus" checked="">
+                                    <label class="form-check-label" for="gridRadios1">
+                                        Henkilötunnus
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ytunnus" id="gridRadios2" value="Y-tunnus">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        Y-tunnus
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="tunnus" class="col-sm-6 col-form-label"></label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="tunnus" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="erehto" class="col-sm-6 col-form-label">Valitse erityisehto:</label>
+                    <div class="col-sm-6">
+                        <select name="erehto" class="custom-select">
+                            <option value=""></option>  
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lisatiedot" class="col-sm-6 col-form-label">Lisätiedot:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="lisatiedot" value="">
+                    </div>
+                </div>
+            </div>
+        </div><!-- form for teacher/student-->
+    </form> 
+</div>
+
+</body>
+
+</html>
