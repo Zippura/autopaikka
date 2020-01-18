@@ -12,7 +12,81 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </head>
     
+
+
 <body>
+
+<?php
+
+$config = parse_ini_file($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/../pdo.ini");
+ 
+#$connection = mysqli_connect($config['server'], $config['username'], $config['password'], $config['dbname']);
+$dsn = "mysql:host=" . $config['server'] . ";dbname=" . $config['dbname'] . ";charset=utf8mb4";
+#$dsn = "mysql:host=localhost;dbname=myDatabase;charset=utf8mb4";
+$options = [
+  PDO::ATTR_EMULATE_PREPARES   => false, // turn off emulation mode for "real" prepared statements
+  PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, //turn on errors in the form of exceptions
+  PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //make the default fetch be an associative array
+];
+try {
+  $pdo = new PDO($dsn, $config['username'], $config['password'], $options);
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+} catch (Exception $e) {
+  error_log($e->getMessage());
+  exit('Database connection failed'); //connection failed
+}
+
+try {
+$stmt = $pdo->prepare("SELECT p.PysakointiAlue_id, p.Taloyhtio, p.Omistaja, p.Katuosoite, p.Postinumero, p.Laskutustili, po.Postitoimipaikka, e.EhdonSisalto
+ FROM PysakointiAlue p
+  LEFT OUTER JOIN Postinumerot po
+    ON p.Postinumero = po. Postinumero
+     LEFT OUTER JOIN Erityisehdot e
+      ON p.Erityisehto_id = e.Erityisehto_id");
+$stmt->execute();
+$arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+catch(Exception $e) {
+  echo 'Exception -> ';
+  var_dump($e->getMessage());
+}
+
+try {
+$stmt = $pdo->prepare("SELECT EtuNimi, SukuNimi FROM Tyontekijat");
+$stmt->execute();
+$tyontekijat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+catch(Exception $e) {
+    echo 'Exception -> ';
+    var_dump($e->getMessage());
+  }
+
+?>
+
+<script type="text/javascript">
+function haeRivi(rivit, id) {
+    for (const rivi of rivit) {
+        if (rivi["PysakointiAlue_id"]==id) {
+            return rivi;
+        }
+    };
+}
+$(document).ready(function() {
+    var data = <?=json_encode($arr)?>;
+    $('#pysalue').change(function() {
+        var valittuPysalue = $(this).children("option:selected").val();
+        var rivi = haeRivi(data, valittuPysalue);
+        $('#omistaja').val(rivi["Omistaja"]);
+        $('#katuos').val(rivi["Katuosoite"]);
+        $('#postinro').val(rivi["Postinumero"]);
+        $('#ptoimipaikka').val(rivi["Postitoimipaikka"]);
+        $('#tilinro').val(rivi["Laskutustili"]);
+        $('#erehto').val(rivi["EhdonSisalto"]);
+    });
+});
+
+</script>
 
     <br>
     <div class="container text-center">
@@ -23,14 +97,16 @@
     <hr><br>
 
 <div class="container">
-    <form>
+    <form action="print.php" method="post">
         <div class="row">
             <div class="col-6"><!--left side -->
                 <div class="form-group row">
-                    <label for="taloyhtio" class="col-sm-6 col-form-label">Valitse taloyhtiö:</label>
+                    <label for="pysalue" class="col-sm-6 col-form-label">Valitse taloyhtiö:</label>
                     <div class="col-sm-6">
-                        <select name="taloyhtio" class="custom-select">
-                            <option value=""></option>  
+                        <select id="pysalue" name="pysalue" class="custom-select">
+                        <?php foreach ($arr as $row): ?>
+                        <option value="<?=$row["PysakointiAlue_id"]?>"><?=$row["Taloyhtio"]?></option>
+                        <?php endforeach ?>   
                         </select>
                     </div>
                 </div>
@@ -49,9 +125,9 @@
 
 
                 <div class="form-group row">
-                    <label for="kosoite" class="col-sm-6 col-form-label">Katuosoite:</label>
+                    <label for="katuos" class="col-sm-6 col-form-label">Katuosoite:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="kosoite">
+                        <input type="text" class="form-control" id="katuos">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -105,8 +181,10 @@
                 <div class="form-group row">
                     <label for="tyontekija" class="col-sm-6 col-form-label">Valitse työntekijä:</label>
                     <div class="col-sm-6">
-                        <select name="Tyontekija" class="custom-select">
-                            <option value=""></option>  
+                        <select id="tyontekija" name="tyontekija" class="custom-select">
+                        <?php foreach ($tyontekijat as $row): ?>
+                            <option value="<?=$row["Tyontekija_id"]?>"><?=$row["EtuNimi"]." ".$row["SukuNimi"]?></option>
+                        <?php endforeach ?>  
                         </select>
                     </div>
                 </div>
@@ -119,6 +197,12 @@
             </div>
             <!--right side -->
             <div class="col-6">
+            <div class="form-group row">
+                    <label for="yrnimi" class="col-sm-6 col-form-label">Yrityksen nimi:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="yrnimi">
+                    </div>
+                </div>
                 <div class="form-group row">
                     <label for="enimi" class="col-sm-6 col-form-label">Etunimi:</label>
                     <div class="col-sm-6">
@@ -140,60 +224,35 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="postinro" class="col-sm-6 col-form-label">Postinumero:</label>
+                    <label for="postnro" class="col-sm-6 col-form-label">Postinumero:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="postinro" value="">
+                        <input type="text" class="form-control" id="postnro" value="">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="ptoimipaikka" class="col-sm-6 col-form-label">Postitoimipaikka:</label>
+                    <label for="postitmp" class="col-sm-6 col-form-label">Postitoimipaikka:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="ptoimipaikka" value="">
+                        <input type="text" class="form-control" id="postitmp" value="">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="email" class="col-sm-6 col-form-label">Sähköposti:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="email" value="email@example.com">
+                        <input type="text" class="form-control" id="email" value="">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="" class="col-sm-6 col-form-label">Henkilötunnus/Y-tunnus:</label>
-                    <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="hlotunnus" id="gridRadios1" value="Henkilötunnus" checked="">
-                                    <label class="form-check-label" for="gridRadios1">
-                                        Henkilötunnus
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="ytunnus" id="gridRadios2" value="Y-tunnus">
-                                    <label class="form-check-label" for="gridRadios2">
-                                        Y-tunnus
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="tunnus" class="col-sm-6 col-form-label"></label>
+                    <label for="tunnus" class="col-sm-6 col-form-label">Henkilö- tai Y-tunnus:</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="tunnus" value="">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="erehto" class="col-sm-6 col-form-label">Valitse erityisehto:</label>
+                    <label for="erehto" class="col-sm-6 col-form-label">Erityisehdot:</label>
                     <div class="col-sm-6">
-                        <select name="erehto" class="custom-select">
-                            <option value=""></option>  
-                        </select>
+                        <input type="text" class="form-control" id="erehto">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -202,8 +261,10 @@
                         <input type="text" class="form-control" id="lisatiedot" value="">
                     </div>
                 </div>
+                <button type="submit" class="btn btn-info">Luo PDF</button>
+                <button type="button" class="btn btn-danger">Palaa etusivulle</button>
             </div>
-        </div><!-- form for teacher/student-->
+        </div>
     </form> 
 </div>
 

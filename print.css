@@ -1,0 +1,89 @@
+h1 {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
+}
+
+h3 {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 15.4px;
+}
+
+p {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+blockquote {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 21px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+pre {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 18.5714px;
+}
+
+.sheet {
+	position: relative;
+}
+
+#taloyhtio {
+	position: absolute;
+	top: 1cm;
+	right: 2cm;
+	width: 7cm;
+	border: 3px solid #73AD21;
+}
+
+#vuokralainen {
+	position: absolute;
+	top: 8cm;
+	left: 5cm;
+	width: 5cm;
+	border: 3px solid #73AD21;	
+}
+
+#sopimustiedot {
+	position: absolute;
+	top: 8cm;
+	right: 2cm;
+	width: 6cm;
+	border: 3px solid #73AD21;	
+}
+
+.smallprint {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 8px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 10px;	
+}
+
+#sopimusehdot {
+	position: absolute;
+	top: 13cm;
+	left: 0.5cm;
+	width: 17cm;
+	border: 3px solid #73AD21;		
+}
