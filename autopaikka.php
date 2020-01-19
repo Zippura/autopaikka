@@ -62,6 +62,16 @@ catch(Exception $e) {
     var_dump($e->getMessage());
   }
 
+try {
+$stmt = $pdo->prepare("SELECT EhdonSisalto FROM Sopimusehdot");
+$stmt->execute();
+$sopimusehdot = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+catch(Exception $e) {
+    echo 'Exception -> ';
+    var_dump($e->getMessage());
+  }
+
 ?>
 
 <script type="text/javascript">
@@ -113,13 +123,13 @@ $(document).ready(function() {
                 <div class="form-group row">
                     <label for="omistaja" class="col-sm-6 col-form-label">Omistaja:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="omistaja">
+                        <input type="text" class="form-control" id="omistaja" name="omistaja">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="apnro" class="col-sm-6 col-form-label">Autopaikan numero:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="apnro">
+                        <input type="text" class="form-control" id="apnro" name="apnro">
                     </div>
                 </div>
 
@@ -127,55 +137,31 @@ $(document).ready(function() {
                 <div class="form-group row">
                     <label for="katuos" class="col-sm-6 col-form-label">Katuosoite:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="katuos">
+                        <input type="text" class="form-control" id="katuos" name="katuos">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="postinro" class="col-sm-6 col-form-label">Postinumero:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="postinro">
+                        <input type="text" class="form-control" id="postinro" name="postinro">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="ptoimipaikka" class="col-sm-6 col-form-label">Postitoimipaikka:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="ptoimipaikka">
+                        <input type="text" class="form-control" id="ptoimipaikka" name="ptoimipaikka">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="sopalkaa" class="col-sm-6 col-form-label">Vuokrasopimus alkaa:</label>
+                    <label for="valkaa" class="col-sm-6 col-form-label">Vuokrasopimus alkaa:</label>
                     <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <select name="Kuukausi" class="custom-select">
-                                    <option value="tammikuu">Tammikuu</option>
-                                    <option value="helmikuu">Helmikuu</option>
-                                    <option value="maaliskuu">Maaliskuu</option>
-                                    <option value="huhtikuu">Huhtikuu</option>
-                                    <option value="toukokuu">Toukokuu</option>
-                                    <option value="kesakuu">Kesäkuu</option>
-                                    <option value="heinakuu">Heinäkuu</option>
-                                    <option value="elokuu">Elokuu</option>
-                                    <option value="syyskuu">Syyskuu</option>
-                                    <option value="lokakuu">Lokakuu</option>
-                                    <option value="marraskuu">Marraskuu</option>
-                                    <option value="joulukuu">Joulukuu</option>
-                                </select>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <select name="Vuosi" class="custom-select">
-                                    <option value="2020">2020</option>
-                                    <option value="2021">2021</option> 
-                                </select>
-                            </div>
-                        </div>
+                        <input type="text" class="form-control" id="valkaa" name="valkaa">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="tilinro" class="col-sm-6 col-form-label">Tilinumero:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="tilinro">
+                        <input type="text" class="form-control" id="tilinro" name="tilinro">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -191,7 +177,7 @@ $(document).ready(function() {
                 <div class="form-group row">
                     <label for="vuokra" class="col-sm-6 col-form-label">Vuokra:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="vuokra">
+                        <input type="text" class="form-control" id="vuokra" name="vuokra">
                     </div>
                 </div>                
             </div>
@@ -200,71 +186,78 @@ $(document).ready(function() {
             <div class="form-group row">
                     <label for="yrnimi" class="col-sm-6 col-form-label">Yrityksen nimi:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="yrnimi">
+                        <input type="text" class="form-control" id="yrnimi" name="yrnimi">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="enimi" class="col-sm-6 col-form-label">Etunimi:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="enimi">
+                        <input type="text" class="form-control" id="enimi" name="enimi">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="snimi" class="col-sm-6 col-form-label">Sukunimi:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="snimi">
+                        <input type="text" class="form-control" id="snimi" name="snimi">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="kosoite" class="col-sm-6 col-form-label">Katuosoite:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="kosoite">
+                        <input type="text" class="form-control" id="kosoite" name="kosoite">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="postnro" class="col-sm-6 col-form-label">Postinumero:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="postnro" value="">
+                        <input type="text" class="form-control" id="postnro" value="" name="postnro">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="postitmp" class="col-sm-6 col-form-label">Postitoimipaikka:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="postitmp" value="">
+                        <input type="text" class="form-control" id="postitmp" value="" name="postitmp">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="email" class="col-sm-6 col-form-label">Sähköposti:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="email" value="">
+                        <input type="text" class="form-control" id="email" value="" name="email">
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <label for="tunnus" class="col-sm-6 col-form-label">Henkilö- tai Y-tunnus:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="tunnus" value="">
+                        <input type="text" class="form-control" id="tunnus" value="" name="tunnus">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="erehto" class="col-sm-6 col-form-label">Erityisehdot:</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="erehto">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="lisatiedot" class="col-sm-6 col-form-label">Lisätiedot:</label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="lisatiedot" value="">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-info">Luo PDF</button>
-                <button type="button" class="btn btn-danger">Palaa etusivulle</button>
             </div>
         </div>
+        <br>
+    <div class="container text-center">
+        <div class="col-sm-12">
+            <h4>Lisätiedot ja sopimusehdot</h4>
+        </div>
+    </div>
+    <hr><br>
+    <div class="form-group row">
+        <label for="erehto" class="col-sm-3 col-form-label">Erityisehdot:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="erehto" name="erehto">
+            </div>
+    </div>
+    <div class="form-group row">
+        <label for="lisatiedot" class="col-sm-3 col-form-label">Lisätiedot:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="lisatiedot" value="" name="lisatiedot">
+            </div>
+    </div>
+    <br><br><hr><br><br>
+    <button type="submit" class="btn btn-info">Luo PDF</button>
+    <button type="button" class="btn btn-danger">Palaa etusivulle</button>
     </form> 
 </div>
 
