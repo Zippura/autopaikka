@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$erehto = htmlentities($_POST["erehto"]);
 	$valkaa = htmlentities($_POST["valkaa"]);
 	$sopimusehdot = htmlentities($_POST["sopimusehdot"]);
+	$pysalue = htmlentities($_POST["pysalue"]);
 }
 ?>
 
@@ -56,17 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</section>
 	<section id="sopimustiedot">
 		<p>
-		<?=$apnro?><br>
-		<?=$vuokra?><br>
-		<?=$tilinro?><br>
-		<?=$valkaa?>	
-		</p>
-	</section>
-	<section id="sopimusehdot">
-		<p class="smallprint">
-		<?php foreach ($sopimusehdot as $row): ?>
-            <input value="<?$row["Sopimusehdot"]?>"><?=$row["EhdonSisalto"]?>
-        <?php endforeach ?>  </p>
+		Autopaikan nro:<?=$apnro?><br>
+		Autopaikan vuokra:<?=$vuokra?><br>
+		Tilinumero: <?=$tilinro?><br>
+		Vuokra alkaa:<?=$valkaa?>	
 		</p>
 	</section>
 	<section id="erehdot">
@@ -75,6 +69,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<?=$erehto?><br>
 		</p>
 	</section>
+	<section id="lisatiedot">
+		<p class="smallprint"> 
+		Sopimuskohtaiset lisätiedot:<br>
+		<?=$lisatiedot?><br>
+		</p>
+	</section>
+	<section id="sopimusehdot">
+		<p class="smallprint">
+		Sopimusehdot: <br>
+		<?=$sopimusehdot?><br>
+		</p>
+	</section>
+
   </section>
 
 </body>

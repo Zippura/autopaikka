@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
         <title>Autopaikan vuokrasopimus</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="autopaikka.css">      
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript"
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -84,15 +85,17 @@ function haeRivi(rivit, id) {
 }
 $(document).ready(function() {
     var data = <?=json_encode($arr)?>;
+    var sopeht = <?=json_encode($sopimusehdot)?>;
     $('#pysalue').change(function() {
         var valittuPysalue = $(this).children("option:selected").val();
-        var rivi = haeRivi(data, valittuPysalue);
+        var rivi = haeRivi(data, valittuPysalue, sopeht);
         $('#omistaja').val(rivi["Omistaja"]);
         $('#katuos').val(rivi["Katuosoite"]);
         $('#postinro').val(rivi["Postinumero"]);
         $('#ptoimipaikka').val(rivi["Postitoimipaikka"]);
         $('#tilinro').val(rivi["Laskutustili"]);
-        $('#erehto').val(rivi["EhdonSisalto"]);
+        $('#erehdot').val(rivi["EhdonSisalto"]);
+        $('#sopimusehdot').val(sopeht[0]["EhdonSisalto"]);
     });
 });
 
@@ -132,8 +135,6 @@ $(document).ready(function() {
                         <input type="text" class="form-control" id="apnro" name="apnro">
                     </div>
                 </div>
-
-
                 <div class="form-group row">
                     <label for="katuos" class="col-sm-6 col-form-label">Katuosoite:</label>
                     <div class="col-sm-6">
@@ -244,9 +245,9 @@ $(document).ready(function() {
     </div>
     <hr><br>
     <div class="form-group row">
-        <label for="erehto" class="col-sm-3 col-form-label">Erityisehdot:</label>
+        <label for="erehdot" class="col-sm-3 col-form-label">Erityisehdot:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="erehto" name="erehto">
+                <input type="text" class="form-control" id="erehdot" value="" name="erehdot">
             </div>
     </div>
     <div class="form-group row">
@@ -255,7 +256,13 @@ $(document).ready(function() {
                 <input type="text" class="form-control" id="lisatiedot" value="" name="lisatiedot">
             </div>
     </div>
-    <br><br><hr><br><br>
+    <div class="form-group row">
+        <label for="sopimusehdot" class="col-sm-3 col-form-label">Sopimusehdot:</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="sopimusehdot" value="" name="sopimusehdot">
+            </div>
+    </div>
+    <br><hr><br>
     <button type="submit" class="btn btn-info">Luo PDF</button>
     <button type="button" class="btn btn-danger">Palaa etusivulle</button>
     </form> 

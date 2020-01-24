@@ -44,31 +44,47 @@ pre {
 }
 
 .sheet {
-	position: relative;
+    position: relative;
 }
 
 #taloyhtio {
 	position: absolute;
-	top: 1cm;
-	right: 2cm;
-	width: 7cm;
-	border: 3px solid #73AD21;
+	top: 4cm;
+	left: 1.5cm;
+	width: 8.9cm;
+	border: 1px solid black;
 }
 
 #vuokralainen {
 	position: absolute;
-	top: 8cm;
-	left: 5cm;
-	width: 5cm;
-	border: 3px solid #73AD21;	
+	top: 4cm;
+	right: 1.5cm;
+	width: 8.9cm;
+	border: 1px solid black;	
 }
 
 #sopimustiedot {
 	position: absolute;
-	top: 8cm;
-	right: 2cm;
-	width: 6cm;
-	border: 3px solid #73AD21;	
+	top: 6.5cm;
+	left: 1.5cm;
+	width: 17.9cm;
+	border: 1px solid black;	
+}
+
+#erehdot {
+	position: absolute;
+	top: 9.6cm;
+	left: 1.5cm;
+	width: 17.95cm;
+	border: 1px solid black;		
+}
+
+#lisatiedot {
+	position: absolute;
+	top: 10.6cm;
+	left: 1.5cm;
+	width: 17.95cm;
+	border: 1px solid black;		
 }
 
 .smallprint {
@@ -82,16 +98,9 @@ pre {
 
 #sopimusehdot {
 	position: absolute;
-	top: 13cm;
-	left: 0.5cm;
-	width: 17cm;
-	border: 3px solid #73AD21;		
+	top: 11.6cm;
+	left: 1.5cm;
+	width: 17.95cm;
+	border: 1px solid black;		
 }
 
-#erehdot {
-	position: absolute;
-	top: 13cm;
-	left: 0.5cm;
-	width: 17cm;
-	border: 3px solid #73AD21;		
-}
