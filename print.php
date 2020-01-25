@@ -59,14 +59,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		<p>
 		Autopaikan nro:<?=$apnro?><br>
 		Autopaikan vuokra:<?=$vuokra?><br>
-		Tilinumero: <?=$tilinro?><br>
 		Vuokra alkaa:<?=$valkaa?>	
 		</p>
 	</section>
 	<section id="erehdot">
 		<p class="smallprint"> 
 		Sopimuskohtaiset erityisehdot:<br>
-		<?=$erehto?><br>
+		<?=$erehto?><br><br><br>
 		</p>
 	</section>
 	<section id="lisatiedot">

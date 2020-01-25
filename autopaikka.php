@@ -7,10 +7,13 @@
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
         <title>Autopaikan vuokrasopimus</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="autopaikka.css">      
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="autopaikka.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Allura|Arapey|Cardo|Covered+By+Your+Grace|Crimson+Text|Dancing+Script|Gentium+Basic|Great+Vibes|Libre+Baskerville|Meddon|Mr+De+Haviland|Old+Standard+TT|PT+Serif|Parisienne|Sacramento|Tangerine|Tinos" rel="stylesheet">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </head>
     
 
@@ -101,6 +104,18 @@ $(document).ready(function() {
 
 </script>
 
+<nav class="navbar navbar-default">
+    <div class="container">
+      <ul class="nav navbar-nav navbar-right">
+		<li><a href="etusivu.php">Etusivu</a></li>
+        <li class="active"><a href="autopaikka.php">Tulosta vuokrasopimus</a></li>
+        <li><a href="ehdot.php">Muokkaa sopimusehtoja</a></li>
+        <li><a href="kohteet.php">Muokkaa kohteita</a></li>
+        <li><a href="kayttajat.php">Muokkaa käyttäjiä</a></li>
+      </ul>
+    </div>
+</nav>
+
     <br>
     <div class="container text-center">
         <div class="col-sm-12">
@@ -160,19 +175,9 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="tilinro" class="col-sm-6 col-form-label">Tilinumero:</label>
+                    <label for="tyotekija" class="col-sm-6 col-form-label">Työntekijän nimi:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="tilinro" name="tilinro">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="tyontekija" class="col-sm-6 col-form-label">Valitse työntekijä:</label>
-                    <div class="col-sm-6">
-                        <select id="tyontekija" name="tyontekija" class="custom-select">
-                        <?php foreach ($tyontekijat as $row): ?>
-                            <option value="<?=$row["Tyontekija_id"]?>"><?=$row["EtuNimi"]." ".$row["SukuNimi"]?></option>
-                        <?php endforeach ?>  
-                        </select>
+                        <input type="text" class="form-control" id="tyontekija" name="tyontekija">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -247,25 +252,30 @@ $(document).ready(function() {
     <div class="form-group row">
         <label for="erehdot" class="col-sm-3 col-form-label">Erityisehdot:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="erehdot" value="" name="erehdot">
+                <textarea type="text" class="form-control" rows="3" id="erehdot" value="" name="erehdot"></textarea>
             </div>
     </div>
     <div class="form-group row">
         <label for="lisatiedot" class="col-sm-3 col-form-label">Lisätiedot:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="lisatiedot" value="" name="lisatiedot">
+                <textarea type="text" class="form-control" rows="5" id="lisatiedot" value="" name="lisatiedot"></textarea>
             </div>
     </div>
     <div class="form-group row">
         <label for="sopimusehdot" class="col-sm-3 col-form-label">Sopimusehdot:</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="sopimusehdot" value="" name="sopimusehdot">
+                <textarea type="text" class="form-control" rows="20" id="sopimusehdot" value="" name="sopimusehdot"></textarea>
             </div>
     </div>
     <br><hr><br>
     <button type="submit" class="btn btn-info">Luo PDF</button>
-    <button type="button" class="btn btn-danger">Palaa etusivulle</button>
+    <a href="etusivu.php" class="btn btn-danger" role="button">Palaa etusivulle</button>
     </form> 
+</div>
+<br><br>
+
+<footer class="container-fluid text-center">
+	<p><strong>Web Design &copy; <i>Mira Louhe 2020</i></strong></p>
 </div>
 
 </body>

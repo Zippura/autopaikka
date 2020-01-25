@@ -1,0 +1,17 @@
+footer {
+    background-color: #494E6B;
+    color: white;
+    padding: 10px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav > .active > a {
+color: #494E6B;
+}
+
+.navbar {
+background-color: #494E6B;
+}
