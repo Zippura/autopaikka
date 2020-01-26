@@ -2,21 +2,16 @@
 
 <html>
 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
-        <title>Autopaikan vuokrasopimus</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="autopaikka.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Allura|Arapey|Cardo|Covered+By+Your+Grace|Crimson+Text|Dancing+Script|Gentium+Basic|Great+Vibes|Libre+Baskerville|Meddon|Mr+De+Haviland|Old+Standard+TT|PT+Serif|Parisienne|Sacramento|Tangerine|Tinos" rel="stylesheet">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    </head>
-    
-
+<head>
+  <title>Uusi vuokrasopimus</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="autopaikka.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Allura|Arapey|Cardo|Covered+By+Your+Grace|Crimson+Text|Dancing+Script|Gentium+Basic|Great+Vibes|Libre+Baskerville|Meddon|Mr+De+Haviland|Old+Standard+TT|PT+Serif|Parisienne|Sacramento|Tangerine|Tinos" rel="stylesheet">
+</head>
 
 <body>
 
@@ -100,6 +95,7 @@ $(document).ready(function() {
         $('#erehdot').val(rivi["EhdonSisalto"]);
         $('#sopimusehdot').val(sopeht[0]["EhdonSisalto"]);
     });
+    $('#pysalue').change();
 });
 
 </script>
@@ -127,7 +123,7 @@ $(document).ready(function() {
 <div class="container">
     <form action="print.php" method="post">
         <div class="row">
-            <div class="col-6"><!--left side -->
+            <div class="col-6">
                 <div class="form-group row">
                     <label for="pysalue" class="col-sm-6 col-form-label">Valitse taloyhtiö:</label>
                     <div class="col-sm-6">
@@ -175,7 +171,7 @@ $(document).ready(function() {
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="tyotekija" class="col-sm-6 col-form-label">Työntekijän nimi:</label>
+                    <label for="tyontekija" class="col-sm-6 col-form-label">Työntekijän nimi:</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="tyontekija" name="tyontekija">
                     </div>
@@ -185,9 +181,17 @@ $(document).ready(function() {
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="vuokra" name="vuokra">
                     </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pvm" class="col-sm-6 col-form-label">Paikka ja päivämäärä:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="pvm" value="" name="pvm">
+                    </div>
                 </div>                
             </div>
-            <!--right side -->
+           <br>
+           <h4>Vuokralaisen tiedot</h4>
+           <hr>
             <div class="col-6">
             <div class="form-group row">
                     <label for="yrnimi" class="col-sm-6 col-form-label">Yrityksen nimi:</label>
@@ -234,42 +238,45 @@ $(document).ready(function() {
                         <input type="text" class="form-control" id="email" value="" name="email">
                     </div>
                 </div>
+
+                <div class="form-group row">
+                    <label for="puhnro" class="col-sm-6 col-form-label">Puhelin:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="puhnro" value="" name="puhnro">
+                    </div>
+                </div>
+
                 <div class="form-group row">
                     <label for="tunnus" class="col-sm-6 col-form-label">Henkilö- tai Y-tunnus:</label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="tunnus" value="" name="tunnus">
                     </div>
                 </div>
+                <br>
+                <h4>Lisätiedot ja sopimusehdot</h4>
+                <hr>
+                <div class="form-group row">
+                    <label for="erehdot" class="col-sm-3 col-form-label">Erityisehdot:</label>
+                    <div class="col-sm-9">
+                        <textarea type="text" class="form-control" rows="3" id="erehdot" value="" name="erehdot"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lisatiedot" class="col-sm-3 col-form-label">Lisätiedot:</label>
+                    <div class="col-sm-9">
+                        <textarea type="text" class="form-control" rows="3" id="lisatiedot" value="" name="lisatiedot"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="sopimusehdot" class="col-sm-3 col-form-label">Sopimusehdot:</label>
+                    <div class="col-sm-9">
+                        <textarea type="text" class="form-control" rows="20" id="sopimusehdot" value="" name="sopimusehdot"></textarea>
+                    </div>
+                </div>
+                <br><hr><br>
+                <button type="submit" class="btn btn-info">Tulosta PDF</button>
             </div>
         </div>
-        <br>
-    <div class="container text-center">
-        <div class="col-sm-12">
-            <h4>Lisätiedot ja sopimusehdot</h4>
-        </div>
-    </div>
-    <hr><br>
-    <div class="form-group row">
-        <label for="erehdot" class="col-sm-3 col-form-label">Erityisehdot:</label>
-            <div class="col-sm-9">
-                <textarea type="text" class="form-control" rows="3" id="erehdot" value="" name="erehdot"></textarea>
-            </div>
-    </div>
-    <div class="form-group row">
-        <label for="lisatiedot" class="col-sm-3 col-form-label">Lisätiedot:</label>
-            <div class="col-sm-9">
-                <textarea type="text" class="form-control" rows="5" id="lisatiedot" value="" name="lisatiedot"></textarea>
-            </div>
-    </div>
-    <div class="form-group row">
-        <label for="sopimusehdot" class="col-sm-3 col-form-label">Sopimusehdot:</label>
-            <div class="col-sm-9">
-                <textarea type="text" class="form-control" rows="20" id="sopimusehdot" value="" name="sopimusehdot"></textarea>
-            </div>
-    </div>
-    <br><hr><br>
-    <button type="submit" class="btn btn-info">Luo PDF</button>
-    <a href="etusivu.php" class="btn btn-danger" role="button">Palaa etusivulle</button>
     </form> 
 </div>
 <br><br>

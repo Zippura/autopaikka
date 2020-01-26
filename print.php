@@ -24,10 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$postnro = htmlentities($_POST["postnro"]);
 	$apnro = htmlentities($_POST["apnro"]);
 	$vuokra = htmlentities($_POST["vuokra"]);
-	$erehto = htmlentities($_POST["erehto"]);
+	$erehdot = htmlentities($_POST["erehdot"]);
 	$valkaa = htmlentities($_POST["valkaa"]);
 	$sopimusehdot = htmlentities($_POST["sopimusehdot"]);
 	$pysalue = htmlentities($_POST["pysalue"]);
+	$tyontekija = htmlentities($_POST["tyontekija"]);
+	$kosoite = htmlentities($_POST["kosoite"]);
+	$postnro = htmlentities($_POST["postnro"]);
+	$email = htmlentities($_POST["email"]);
+	$tunnus = htmlentities($_POST["tunnus"]);
+	$puhnro = htmlentities($_POST["puhnro"]);
+	$lisatiedot = htmlentities($_POST["lisatiedot"]);
 }
 ?>
 
@@ -41,43 +48,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<h1>Autopaikan vuokrasopimus</h1>
 	<section id="taloyhtio">
 		<p>
-		<?=$omistaja?><br>
-		<?=$katuos?><br>
-		<?=$postinro?>
+		 Autopaikan tiedot <br>
+		 Omistaja: <?=$omistaja?><br>
+		 Osoite: <?=$katuos?>, <?=$postinro?> <?=$ptoimipaikka?> <br>
+		 Autopaikan nro: <?=$apnro?><br>
+		 Autopaikan vuokra: <?=$vuokra?><br>
+		 Vuokra alkaa: <?=$valkaa?>	
 		</p>
 	</section>
 	<section id="vuokralainen">
 		<p>
-		<?=$yrnimi?><br>
-		<?=$enimi?><br>
-		<?=$snimi?><br>
-		<?=$kosoite?>
-		<?=$postnro?>
-		</p>
-	</section>
-	<section id="sopimustiedot">
-		<p>
-		Autopaikan nro:<?=$apnro?><br>
-		Autopaikan vuokra:<?=$vuokra?><br>
-		Vuokra alkaa:<?=$valkaa?>	
+		 Vuokralaisen tiedot <br>
+		 Yrityksen nimi: <?=$yrnimi?><br>
+		 Vuokralaisen nimi: <?=$enimi?> <?=$snimi?><br>
+		 Osoite: <?=$kosoite?>, <?=$postnro?> <?=$postitmp?>
+		 Sähköposti: <?=$email?> <br>
+		 Puhelin: <?=$puhnro?> <br>
+		 Henkilö- tai Y-tunnus: <?=$tunnus?>
 		</p>
 	</section>
 	<section id="erehdot">
 		<p class="smallprint"> 
-		Sopimuskohtaiset erityisehdot:<br>
-		<?=$erehto?><br><br><br>
+		 Sopimuskohtaiset erityisehdot:<br>
+		 <?=$erehdot?><br><br><br>
 		</p>
 	</section>
 	<section id="lisatiedot">
 		<p class="smallprint"> 
-		Sopimuskohtaiset lisätiedot:<br>
-		<?=$lisatiedot?><br>
+		 Sopimuskohtaiset lisätiedot:<br>
+		 <?=$lisatiedot?><br>
 		</p>
 	</section>
 	<section id="sopimusehdot">
 		<p class="smallprint">
-		Sopimusehdot: <br>
-		<?=$sopimusehdot?><br>
+		 Sopimusehdot: <br>
+		 <?=$sopimusehdot?><br>
+		</p>
+	</section>
+	<section id="allek">
+		<h4>Allekirjoitustiedot</h4>
+	</section>
+	<section id="pvm">
+		<p> 
+		 Paikka ja päivämäärä:<br>
+		 <?=$pvm?><br>
+		</p>
+	</section>
+	<section id="vuokr">
+		<p> 
+		<br><br>
+		 <?=$enimi?> <?=$snimi?>
+		</p>
+	</section>
+	<section id="tyontekija">
+		<p>
+		<br><br>
+		 <?=$tyontekija?>
 		</p>
 	</section>
 

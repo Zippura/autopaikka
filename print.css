@@ -63,17 +63,9 @@ pre {
 	border: 1px solid black;	
 }
 
-#sopimustiedot {
-	position: absolute;
-	top: 6.5cm;
-	left: 1.5cm;
-	width: 17.9cm;
-	border: 1px solid black;	
-}
-
 #erehdot {
 	position: absolute;
-	top: 9.6cm;
+	top: 8.1cm;
 	left: 1.5cm;
 	width: 17.95cm;
 	border: 1px solid black;		
@@ -81,7 +73,7 @@ pre {
 
 #lisatiedot {
 	position: absolute;
-	top: 10.6cm;
+	top: 10.4cm;
 	left: 1.5cm;
 	width: 17.95cm;
 	border: 1px solid black;		
@@ -98,14 +90,39 @@ pre {
 
 #sopimusehdot {
 	position: absolute;
-	top: 11.6cm;
+	top: 11.8cm;
 	left: 1.5cm;
 	width: 17.95cm;
 	border: 1px solid black;		
 }
 
-footer {
-    background-color: #494E6B;
-    color: white;
-    padding: 10px;
+#tyontekija {
+	position: absolute;
+	top: 23.4cm;
+	left: 1.5cm;
+	width: 8.9cm;
+	border: 1px solid black;		
+}
+
+#vuokr {
+	position: absolute;
+	top: 23.4cm;
+	right: 1.5cm;
+	width: 8.9cm;
+	border: 1px solid black;		
+}
+
+#pvm {
+	position: absolute;
+	top: 21.4cm;
+	right: 1.5cm;
+	width: 17.95cm;
+	border: 1px solid black;		
+}
+
+#allek {
+	position: absolute;
+	top: 19.6cm;
+	right: 1.5cm;
+	width: 17.95cm;		
 }

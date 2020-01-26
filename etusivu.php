@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <title>Etusivu</title>
   <meta charset="utf-8">
@@ -84,8 +84,8 @@ try {
     </div>
     <div class="col-sm-10">
       <h4>Sopimusehtojen muokkaus:</h4>
-      <p>Pääset muokkaamaan, poistamaan tai lisäämään vuokrasopimusten yleisiä sopimusehtoja sekä autopaikkakohtaisia 
-          erityisehtoja klikkaamalla <a href="ehdot.php">"Muokkaa ehtoja"</a>. 
+      <p>Pääset muokkaamaan, poistamaan tai lisäämään vuokrasopimusten yleisiä sopimusehtoja
+      klikkaamalla <a href="ehdot.php">"Muokkaa ehtoja"</a>. 
       </p>
     </div>
     <div class="col-sm-1">
@@ -100,7 +100,7 @@ try {
     <div class="col-sm-10">
       <h4>Kohteiden muokkaus:</h4>
       <p>Pääset muokkaamaan, poistamaan tai lisäämään autopaikkoihin ja kohteisiin liittyviä lisätietoja  
-        klikkaamalla <a href="kohteet.php">"Muokkaa kohteita"</a>. 
+        sekä erityisehtoja klikkaamalla <a href="kohteet.php">"Muokkaa kohteita"</a>. 
       </p>
     </div>
     <div class="col-sm-1">

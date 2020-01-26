@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <title>Kohteet</title>
   <meta charset="utf-8">
@@ -92,6 +92,7 @@ try {
           $('#erehdot').val(rivi["EhdonSisalto"]);
           $('#sopimusehdot').val(sopeht[0]["EhdonSisalto"]);
       });
+      $('#pysalue').change();
   });
   
   </script>
@@ -111,18 +112,18 @@ try {
 </nav>
   
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-  <div class="col-sm-11">
+  <div class="col-sm-10">
       <h3>Muokkaa kohteiden tietoja</h3>
   </div>
 </div>
 <br><br>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="pysalue" class="col-sm-3">Valitse taloyhtiö:</label>
+    <label for="pysalue" class="col-sm-2">Valitse taloyhtiö:</label>
   <div class="col-sm-6">
     <select id="pysalue" name="pysalue" class="custom-select">
       <?php foreach ($arr as $row): ?>
@@ -135,56 +136,69 @@ try {
 </div>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="omistaja" class="col-sm-3">Omistaja:</label>
-  <div class="col-sm-7">
+    <label for="omistaja" class="col-sm-2">Omistaja:</label>
+  <div class="col-sm-6">
     <input type="text" class="form-control" id="omistaja" name="omistaja">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="katuos" class="col-sm-3">Katuosoite:</label>
-  <div class="col-sm-7">
+    <label for="katuos" class="col-sm-2">Katuosoite:</label>
+  <div class="col-sm-6">
     <input type="text" class="form-control" id="katuos" name="katuos">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="postinro" class="col-sm-3">Postinumero:</label>
-  <div class="col-sm-7">
+    <label for="postinro" class="col-sm-2">Postinumero:</label>
+  <div class="col-sm-6">
     <input type="text" class="form-control" id="postinro" name="postinro">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="ptoimipaikka" class="col-sm-3">Postitoimipaikka:</label>
-  <div class="col-sm-7">
+    <label for="ptoimipaikka" class="col-sm-2">Postitoimipaikka:</label>
+  <div class="col-sm-6">
     <input type="text" class="form-control" id="ptoimipaikka" name="ptoimipaikka">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
+  </div>
+</div>
+<div class="form-group row">
+  <div class="col-sm-2">
+  </div>
+  <label for="erehdot" class="col-sm-2 col-form-label">Erityisehdot:</label>
+  <div class="col-sm-6">
+    <textarea type="text" class="form-control" rows="3" id="erehdot" value="" name="erehdot"></textarea>
+  </div>
+  <div class="col-sm-2">
   </div>
 </div>
 <br><br>
 
+<br><br>
+
 <div class="row">
   <div class="col-sm-12">
-    <div class="col-sm-1">
+    <div class="col-sm-2">
     </div>
     <div class="col-sm-10">
-      <button type="button" class="btn btn-danger">Tallenna muutokset</button>
+      <button type="button" class="btn btn-danger">Poista kohde</button>
+      <button type="button" class="btn btn-success">Tallenna muutokset</button>
     </div>
   </div>
 </div>
@@ -193,76 +207,87 @@ try {
 <hr>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-  <div class="col-sm-11">
+  <div class="col-sm-10">
       <h3>Lisää uusi kohde</h3>
   </div>
 </div>
 <br><br>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="omistaja" class="col-sm-3">Taloyhtiö:</label>
-  <div class="col-sm-7">
+    <label for="omistaja" class="col-sm-2">Taloyhtiö:</label>
+  <div class="col-sm-6">
     <input type="text" class="form-control" id="omistaja" name="omistaja">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="omistaja" class="col-sm-3">Omistaja:</label>
-  <div class="col-sm-7">
+    <label for="omistaja" class="col-sm-2">Omistaja:</label>
+  <div class="col-sm-6">
     <input type="text" class="form-control" id="omistaja" name="omistaja">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="katuos" class="col-sm-3">Katuosoite:</label>
-  <div class="col-sm-7">
+    <label for="katuos" class="col-sm-2">Katuosoite:</label>
+  <div class="col-sm-6">
     <input type="text" class="form-control" id="katuos" name="katuos">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="postinro" class="col-sm-3">Postinumero:</label>
-  <div class="col-sm-7">
+    <label for="postinro" class="col-sm-2">Postinumero:</label>
+  <div class="col-sm-6">
     <input type="text" class="form-control" id="postinro" name="postinro">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   </div>
-    <label for="ptoimipaikka" class="col-sm-3">Postitoimipaikka:</label>
-  <div class="col-sm-7">
+    <label for="ptoimipaikka" class="col-sm-2">Postitoimipaikka:</label>
+  <div class="col-sm-6">
     <input type="text" class="form-control" id="ptoimipaikka" name="ptoimipaikka">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-sm-2">
+  </div>
+  <label for="erehdot" class="col-sm-2 col-form-label">Erityisehdot:</label>
+  <div class="col-sm-6">
+    <textarea type="text" class="form-control" rows="3" id="erehdot" value="" name="erehdot"></textarea>
+  </div>
+  <div class="col-sm-2">
   </div>
 </div>
 <br><br>
 
 <div class="row">
   <div class="col-sm-12">
-    <div class="col-sm-1">
+    <div class="col-sm-2">
     </div>
     <div class="col-sm-10">
-      <button type="button" class="btn btn-danger">Tallenna muutokset</button>
+      <button type="button" class="btn btn-success">Tallenna muutokset</button>
     </div>
   </div>
 </div>

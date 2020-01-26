@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Kohteet</title>
+  <title>Käyttäjät</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -63,6 +63,7 @@ try {
           $('#puhelin').val(rivi["Puhelin"]);
           $('#sposti').val(rivi["Email"]);
       });
+      $('#tyontekijat').change();
   });
   
   </script>
@@ -153,7 +154,8 @@ try {
     <div class="col-sm-1">
     </div>
     <div class="col-sm-10">
-      <button type="button" class="btn btn-danger">Tallenna muutokset</button>
+      <button type="button" class="btn btn-danger">Poista käyttäjä</button>
+      <button type="button" class="btn btn-success">Tallenna muutokset</button>
     </div>
   </div>
 </div>
@@ -220,7 +222,7 @@ try {
     <div class="col-sm-1">
     </div>
     <div class="col-sm-10">
-      <button type="button" class="btn btn-danger">Tallenna muutokset</button>
+      <button type="button" class="btn btn-success">Tallenna muutokset</button>
     </div>
   </div>
 </div>
