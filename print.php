@@ -5,12 +5,17 @@
   <title>Autopaikan vuokrasopimus</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paper-css/0.4.1/paper.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="print.css">
+  <link rel="stylesheet" type="text/css" href="autopaikka.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Allura|Arapey|Cardo|Covered+By+Your+Grace|Crimson+Text|Dancing+Script|Gentium+Basic|Great+Vibes|Libre+Baskerville|Meddon|Mr+De+Haviland|Old+Standard+TT|PT+Serif|Parisienne|Sacramento|Tangerine|Tinos" rel="stylesheet">
   <style>@page { size: A4 }</style>
 </head>
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+<?php //css asettelumalli tulostusta varten
+if ($_SERVER["REQUEST_METHOD"] == "POST") {//http:n post-metodilla siirtyy tiedot lomakkeelle otsikko-tiedoissa eli headereissa
     $omistaja = htmlentities($_POST["omistaja"]);
     $katuos = htmlentities($_POST["katuos"]);
     $postinro = htmlentities($_POST["postinro"]);
@@ -34,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$email = htmlentities($_POST["email"]);
 	$tunnus = htmlentities($_POST["tunnus"]);
 	$puhnro = htmlentities($_POST["puhnro"]);
+	$pvm = htmlentities($_POST["pvm"]);
 	$lisatiedot = htmlentities($_POST["lisatiedot"]);
 }
 ?>
@@ -53,15 +59,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		 Osoite: <?=$katuos?>, <?=$postinro?> <?=$ptoimipaikka?> <br>
 		 Autopaikan nro: <?=$apnro?><br>
 		 Autopaikan vuokra: <?=$vuokra?><br>
-		 Vuokra alkaa: <?=$valkaa?>	
+		 Vuokra alkaa: <?=$valkaa?>	<br>
+		                               
 		</p>
 	</section>
 	<section id="vuokralainen">
 		<p>
 		 Vuokralaisen tiedot <br>
-		 Yrityksen nimi: <?=$yrnimi?><br>
-		 Vuokralaisen nimi: <?=$enimi?> <?=$snimi?><br>
-		 Osoite: <?=$kosoite?>, <?=$postnro?> <?=$postitmp?>
+		 Nimi: <?=$yrnimi?> <?=$enimi?> <?=$snimi?><br>
+		 Osoite: <?=$kosoite?>, <?=$postnro?> <?=$postitmp?><br>
 		 Sähköposti: <?=$email?> <br>
 		 Puhelin: <?=$puhnro?> <br>
 		 Henkilö- tai Y-tunnus: <?=$tunnus?>
@@ -106,8 +112,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		 <?=$tyontekija?>
 		</p>
 	</section>
-
   </section>
+
+  <footer class="container-fluid text-center">
+  	<p><a href="index.php" class="btn btn-info">Palaa etusivulle</a></p>  
 
 </body>
 

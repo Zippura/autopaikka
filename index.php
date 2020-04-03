@@ -37,11 +37,10 @@ try {
 <nav class="navbar navbar-default">
   <div class="container">
     <ul class="nav navbar-nav navbar-right">
-		<li class="active"><a href="index.html">Etusivu</a></li>
+		<li class="active"><a href="index.php">Etusivu</a></li>
         <li><a href="autopaikka.php">Tulosta vuokrasopimus</a></li>
         <li><a href="ehdot.php">Muokkaa sopimusehtoja</a></li>
         <li><a href="kohteet.php">Muokkaa kohteita</a></li>
-        <li><a href="kayttajat.php">Muokkaa käyttäjiä</a>
     </li>
     </ul>
   </div>

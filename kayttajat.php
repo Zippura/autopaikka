@@ -71,7 +71,7 @@ try {
 <nav class="navbar navbar-default">
   <div class="container">
       <ul class="nav navbar-nav navbar-right">
-		<li><a href="etusivu.php">Etusivu</a></li>
+		<li><a href="index.php">Etusivu</a></li>
         <li><a href="autopaikka.php">Tulosta vuokrasopimus</a></li>
         <li><a href="ehdot.php">Muokkaa sopimusehtoja</a></li>
         <li><a href="kohteet.php">Muokkaa kohteita</a></li>

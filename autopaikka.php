@@ -17,34 +17,39 @@
 
 <?php
 
+//tässä haetaan salasana ja käyttäjätunnus kotihakemiston juuresta 
 $config = parse_ini_file($_SERVER["CONTEXT_DOCUMENT_ROOT"] . "/../pdo.ini");
  
-#$connection = mysqli_connect($config['server'], $config['username'], $config['password'], $config['dbname']);
+//connection string
 $dsn = "mysql:host=" . $config['server'] . ";dbname=" . $config['dbname'] . ";charset=utf8mb4";
-#$dsn = "mysql:host=localhost;dbname=myDatabase;charset=utf8mb4";
+
+//pdo-asetuksia
 $options = [
-  PDO::ATTR_EMULATE_PREPARES   => false, // turn off emulation mode for "real" prepared statements
+  PDO::ATTR_EMULATE_PREPARES   => false, // turn off emulation mode for "real" prepared statements 
   PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, //turn on errors in the form of exceptions
   PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //make the default fetch be an associative array
 ];
+
+//luodaan uusi pdo-objekti, joka samalla ottaa yhteyden tietokantaan - jos epäonnistuu, ei tule pdo-objektia ja tulee exception (exit lopettaa)
 try {
   $pdo = new PDO($dsn, $config['username'], $config['password'], $options);
-  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+  #$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  #$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch (Exception $e) {
   error_log($e->getMessage());
   exit('Database connection failed'); //connection failed
 }
 
+//tietokantakysely (käytetään pdo-objektia ja sen prepare-metodia)
 try {
-$stmt = $pdo->prepare("SELECT p.PysakointiAlue_id, p.Taloyhtio, p.Omistaja, p.Katuosoite, p.Postinumero, p.Laskutustili, po.Postitoimipaikka, e.EhdonSisalto
- FROM PysakointiAlue p
-  LEFT OUTER JOIN Postinumerot po
-    ON p.Postinumero = po. Postinumero
-     LEFT OUTER JOIN Erityisehdot e
-      ON p.Erityisehto_id = e.Erityisehto_id");
-$stmt->execute();
-$arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt = $pdo->prepare("SELECT p.PysakointiAlue_id, p.Taloyhtio, p.Omistaja, p.Katuosoite, p.Postinumero, p.Laskutustili, po.Postitoimipaikka, e.EhdonSisalto
+   FROM PysakointiAlue p
+    LEFT OUTER JOIN Postinumerot po
+      ON p.Postinumero = po. Postinumero
+       LEFT OUTER JOIN Erityisehdot e
+        ON p.Erityisehto_id = e.Erityisehto_id");
+  $stmt->execute();
+  $arr = $stmt->fetchAll(PDO::FETCH_ASSOC); //tulee assosiatiivinen taulukko (avainarvopareja)
 }
 catch(Exception $e) {
   echo 'Exception -> ';
@@ -52,9 +57,9 @@ catch(Exception $e) {
 }
 
 try {
-$stmt = $pdo->prepare("SELECT EtuNimi, SukuNimi FROM Tyontekijat");
-$stmt->execute();
-$tyontekijat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt = $pdo->prepare("SELECT EtuNimi, SukuNimi FROM Tyontekijat");
+  $stmt->execute();
+  $tyontekijat = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 catch(Exception $e) {
     echo 'Exception -> ';
@@ -62,9 +67,9 @@ catch(Exception $e) {
   }
 
 try {
-$stmt = $pdo->prepare("SELECT EhdonSisalto FROM Sopimusehdot");
-$stmt->execute();
-$sopimusehdot = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt = $pdo->prepare("SELECT EhdonSisalto FROM Sopimusehdot");
+  $stmt->execute();
+  $sopimusehdot = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 catch(Exception $e) {
     echo 'Exception -> ';
@@ -74,6 +79,7 @@ catch(Exception $e) {
 ?>
 
 <script type="text/javascript">
+//funktio, joka hakee id:n perusteella pysäköintialueen tietokannasta
 function haeRivi(rivit, id) {
     for (const rivi of rivit) {
         if (rivi["PysakointiAlue_id"]==id) {
@@ -82,12 +88,12 @@ function haeRivi(rivit, id) {
     };
 }
 $(document).ready(function() {
-    var data = <?=json_encode($arr)?>;
+    var data = <?=json_encode($arr)?>;//php preprocessor tuottaa tiedon tietokannasta javascriptin ymmärtämään muotoon json
     var sopeht = <?=json_encode($sopimusehdot)?>;
-    $('#pysalue').change(function() {
-        var valittuPysalue = $(this).children("option:selected").val();
-        var rivi = haeRivi(data, valittuPysalue, sopeht);
-        $('#omistaja').val(rivi["Omistaja"]);
+    $('#pysalue').change(function() {//browser event = change ja ready
+        var valittuPysalue = $(this).children("option:selected").val();//pudotusvalikon lapsista katsotaan mikä on valittu ja mikä sen arvo on 
+        var rivi = haeRivi(data, valittuPysalue);//paluuarvo sijoitetaan rivi-nimiseen muuttujaan
+        $('#omistaja').val(rivi["Omistaja"]);//jQueryllä viitataan html inputiin id:n mukaan
         $('#katuos').val(rivi["Katuosoite"]);
         $('#postinro').val(rivi["Postinumero"]);
         $('#ptoimipaikka').val(rivi["Postitoimipaikka"]);
@@ -95,7 +101,7 @@ $(document).ready(function() {
         $('#erehdot').val(rivi["EhdonSisalto"]);
         $('#sopimusehdot').val(sopeht[0]["EhdonSisalto"]);
     });
-    $('#pysalue').change();
+    $('#pysalue').change();//kutsuu kerran ensimmäisen päivityksen sivulatauksen yhteydessä
 });
 
 </script>
@@ -103,11 +109,10 @@ $(document).ready(function() {
 <nav class="navbar navbar-default">
     <div class="container">
       <ul class="nav navbar-nav navbar-right">
-		<li><a href="etusivu.php">Etusivu</a></li>
+		<li><a href="index.php">Etusivu</a></li>
         <li class="active"><a href="autopaikka.php">Tulosta vuokrasopimus</a></li>
         <li><a href="ehdot.php">Muokkaa sopimusehtoja</a></li>
         <li><a href="kohteet.php">Muokkaa kohteita</a></li>
-        <li><a href="kayttajat.php">Muokkaa käyttäjiä</a></li>
       </ul>
     </div>
 </nav>
@@ -185,7 +190,7 @@ $(document).ready(function() {
                 <div class="form-group row">
                     <label for="pvm" class="col-sm-6 col-form-label">Paikka ja päivämäärä:</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="pvm" value="" name="pvm">
+                        <input type="text" class="form-control" id="pvm" name="pvm">
                     </div>
                 </div>                
             </div>

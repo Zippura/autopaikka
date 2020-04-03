@@ -42,7 +42,7 @@ try {
 
     try {
       $stmt = $pdo->prepare("UPDATE Sopimusehdot SET EhdonSisalto=?  WHERE Ehto_id='1'");
-      $stmt->execute([$sopimusehdot]);
+      $stmt->execute([$sopimusehdot]);//kun halutaan laittaa tietoa, kysymysmerkkien paikalle tulevat parametrit
       }
       catch(Exception $e) {
         echo 'Exception -> ';
